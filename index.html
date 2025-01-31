@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Blob File</title>
+    <script>
+        function downloadFile() {
+            // Sample text file content
+            const fileContent = "This is a sample file downloaded from a Blob URL.";
+            const blob = new Blob([fileContent], { type: "text/plain" });
+
+            // Create Blob URL
+            const blobUrl = URL.createObjectURL(blob);
+
+            // Create a temporary anchor element
+            const a = document.createElement("a");
+            a.href = blobUrl;
+            a.download = "sample-file.txt"; // File name
+
+            // Append to document, trigger click, and remove element
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            // Revoke the Blob URL after download
+            URL.revokeObjectURL(blobUrl);
+        }
+    </script>
+</head>
+<body>
+    <h2>Click the button below to download a sample file:</h2>
+    <button onclick="downloadFile()">Download File</button>
+</body>
+</html>

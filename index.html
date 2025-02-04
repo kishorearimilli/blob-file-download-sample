@@ -6,22 +6,20 @@
     <title>Download Blob File</title>
     <script>
         function downloadFile() {
-            // Sample text file content
             const fileContent = "This is a sample file downloaded from a Blob URL.";
-            const blob = new Blob([fileContent], { type: "text/plain" });
+    const blob = new Blob([fileContent], { type: "text/plain" });
 
-            // Create Blob URL
-            const blobUrl = URL.createObjectURL(blob);
+    const blobUrl = URL.createObjectURL(blob);
 
-            // Create a temporary anchor element
-            const a = document.createElement("a");
-            a.href = blobUrl;
-            a.download = "sample-file.txt"; // File name
+    const a = document.createElement("a");
+    a.href = blobUrl;
+    a.download = "sample-file.txt"; // Manually setting filename
 
-            // Append to document, trigger click, and remove element
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    URL.revokeObjectURL(blobUrl);
         }
     </script>
 </head>

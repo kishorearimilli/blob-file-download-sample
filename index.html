@@ -1,30 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download Blob File</title>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WKWebView Text File Download Test</title>
+  </head>  
+  <body>
+    <h1>WKWebView Text File Download Test</h1>
+
+    <a id="dataUrlDownload" download="example.txt">Download data: URL</a>
+    (Works in <code>WKWebView</code>.)
+    
+    <a id="blobUrlDownload" download="example.txt">Download blob: URL</a>
+    (Doesn't work in <code>WKWebView</code>.)
+
     <script>
-        function downloadFile() {
-            const fileContent = "This is a sample file downloaded from a Blob URL.";
-    const blob = new Blob([fileContent], { type: "text/plain" });
-
-    const blobUrl = URL.createObjectURL(blob);
-
-    const a = document.createElement("a");
-    a.href = blobUrl;
-    a.download = "sample-file.txt"; // Manually setting filename
-
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-
-    URL.revokeObjectURL(blobUrl);
+      (async () => {
+        if (location.protocol !== 'https:') {
+          location.protocol = 'https:';
         }
+
+        // Text file content
+        const textContent = "This is a sample text file for testing WKWebView downloads.";
+
+        // Create a Data URL (Works in WKWebView)
+        const dataURL = "data:text/plain;charset=utf-8," + encodeURIComponent(textContent);
+        
+        // Create a Blob URL (Does NOT work in WKWebView)
+        const blob = new Blob([textContent], { type: "text/plain" });
+        const blobURL = URL.createObjectURL(blob);
+
+        // Assign URLs to <a> elements
+        document.getElementById("dataUrlDownload").href = dataURL;
+        document.getElementById("blobUrlDownload").href = blobURL;
+      })();
     </script>
-</head>
-<body>
-    <h2>Click the button below to download a sample file:</h2>
-    <button onclick="downloadFile()">Download File</button>
-</body>
+  </body>
 </html>

@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PDF Generator</title>
-</head>
-<body>
-  <h1>PDF Generator</h1>
-  <button id="generate">Generate PDF</button>
-  <a id="download" href="#" style="display:none;">Download PDF</a>
+<html>
 
-  <script src="app.js"></script>
+<head>
+    <title>
+        JavaScript Blob
+    </title>
+</head>
+
+<body>
+    <a download="gfg.txt" href='#'
+        id="link">Download</a>
+
+    <script>
+        let abc = new Blob(["Geeks For Geeks"],
+                { type: 'text/plain' });
+
+        link.href = URL.createObjectURL(abc);
+    </script>
 </body>
 
 </html>

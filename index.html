@@ -2,57 +2,32 @@
 <html>
 
 <head>
-    <title>JavaScript Blob Downloads</title>
+    <title>JavaScript Blob and Normal Downloads</title>
 </head>
 
 <body>
-    <h2>Download Files using JavaScript Blob</h2>
+    <h2>Download Files Example</h2>
 
-    <!-- Original text link -->
-    <a download="long_random_text.txt" href="#" id="link">Download Default Text</a>
+    <!-- Blob-based text link -->
+    <a download="long_random_text.txt" href="#" id="link">Download Blob Text</a>
     <br><br>
 
-    <!-- New buttons -->
-    <button id="downloadTextBtn">Download Text File</button>
-    <button id="downloadPdfBtn">Download PDF File</button>
+    <!-- Normal file download buttons -->
+    <a href="sample.txt" download>
+        <button id="downloadTextBtn">Download Text File</button>
+    </a>
+
+    <a href="sample.pdf" download>
+        <button id="downloadPdfBtn">Download PDF File</button>
+    </a>
 
     <script>
-        // Existing Blob link setup
+        // Blob-based text download link
         const link = document.getElementById("link");
-        const textBlob = new Blob(["Geeks For Geeks"], { type: 'text/plain' });
-        link.href = URL.createObjectURL(textBlob);
-
-        // Text file download button
-        document.getElementById("downloadTextBtn").addEventListener("click", () => {
-            const blob = new Blob(["This is a sample text file created via Blob."], { type: "text/plain" });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = "sample.txt";
-            a.click();
-            URL.revokeObjectURL(url);
-        });
-
-        // PDF file download button
-        document.getElementById("downloadPdfBtn").addEventListener("click", () => {
-            const pdfContent = [
-                "%PDF-1.4\n",
-                "1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n",
-                "2 0 obj\n<< /Type /Pages /Kids [3 0 R] /Count 1 >>\nendobj\n",
-                "3 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 300 144] /Contents 4 0 R >>\nendobj\n",
-                "4 0 obj\n<< /Length 44 >>\nstream\nBT /F1 24 Tf 100 100 Td (Hello from Blob PDF!) Tj ET\nendstream\nendobj\n",
-                "xref\n0 5\n0000000000 65535 f \n0000000010 00000 n \n0000000060 00000 n \n0000000116 00000 n \n0000000213 00000 n \n",
-                "trailer\n<< /Root 1 0 R /Size 5 >>\nstartxref\n320\n%%EOF"
-            ];
-            const blob = new Blob(pdfContent, { type: "application/pdf" });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = "sample.pdf";
-            a.click();
-            URL.revokeObjectURL(url);
-        });
+        const blob = new Blob(["Geeks For Geeks"], { type: 'text/plain' });
+        link.href = URL.createObjectURL(blob);
     </script>
+
 </body>
 
 </html>

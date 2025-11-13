@@ -1,0 +1,18 @@
+Welcome to Geeks for Geeks Example!
+
+This is a sample text file created for demonstrating normal downloads in HTML.
+It includes multiple lines, formatted text, and example data.
+
+Topics covered:
+1. HTML Downloads
+2. JavaScript Blobs
+3. File Linking
+4. PDF and Text File Handling
+
+Sample Code Snippet:
+--------------------
+function greet() {
+    console.log("Hello from sample.txt!");
+}
+
+Thank you!
